@@ -61,6 +61,8 @@ import {
   History,
 } from "tiptap-extensions";
 
+import ClipboardHook from "./ClipboardHook.js";
+
 export default {
   components: {
     Logo,
@@ -115,6 +117,9 @@ export default {
       output = output
         .replace(/<s>/g, "[strike]")
         .replace(/<\/s>/g, "[/strike]");
+
+      output = output.replace(/<hr>/g, "[hr]");
+
       output = output.replace(/<br>/g, "\n");
       output = output.replace(
         /<span class="quill-precision" title="Precision">﻿<span contenteditable="false"><span contenteditable="false">[0-9]*\.[0-9]*%<\/span><\/span>﻿<\/span>/g,
@@ -141,7 +146,9 @@ export default {
     centerText(e) {
       e.preventDefault();
 
-      console.log("text:", this.editor);
+      console.log("json", this.editor.getJSON());
+
+      // console.log("text:", this.editor);
 
       const text = this.editor.getHTML();
 
@@ -155,7 +162,7 @@ export default {
           .replace(/<p>|<h1>/, "")
           .replace(/^\u200a|\u2800+|\u200a|\u2800+$/g, "");
         // ^\u200a/g, "");
-        console.log("textfff", text, isHeading);
+        // console.log("textfff", text, isHeading);
         // const pel = document.createElement("p");
         // pel.innerText = text;
         const pel = isHeading ? this.$refs.hp : this.$refs.textp;
@@ -166,7 +173,7 @@ export default {
         }
         pel.innerHTML = longSpacer;
         const wsWidth = pel.offsetWidth / 10000;
-        console.log("wsWidth", wsWidth);
+        // console.log("wsWidth", wsWidth);
 
         longSpacer = "";
         for (let i = 0; i < 10000; i++) {
@@ -174,7 +181,7 @@ export default {
         }
         pel.innerHTML = longSpacer;
         const smallwsWidth = pel.offsetWidth / 10000;
-        console.log("smallwsWidth", smallwsWidth);
+        // console.log("smallwsWidth", smallwsWidth);
 
         pel.innerHTML = text;
         console.log(pel, pel.clientHeight, pel.offsetWidth);
@@ -190,7 +197,7 @@ export default {
         const allWidth = parseInt(this.width);
 
         const neededOffset = (allWidth - textWidth) / 2;
-        console.log("neededOffset", allWidth, textWidth, neededOffset);
+        // console.log("neededOffset", allWidth, textWidth, neededOffset);
 
         let spacer = "";
         let totalOffset = 0;
@@ -208,7 +215,7 @@ export default {
           smallwsCount++;
         }
 
-        console.log("totalOffset", totalOffset, bigWsCount, smallwsCount);
+        // console.log("totalOffset", totalOffset, bigWsCount, smallwsCount);
 
         // const wsWidth = 1.25244140625;
         // const wsWidth = isHeading ? 1.6699 : 1.0856;
@@ -286,6 +293,7 @@ export default {
         new Strike(),
         new Underline(),
         new History(),
+        new ClipboardHook(),
       ],
       content: "<p>This is just a boring paragraph</p>",
     });
