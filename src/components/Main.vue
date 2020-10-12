@@ -11,90 +11,18 @@
       :options="editorOptions"
       @change="update">
     </quill-editor> -->
-    <div class="editor-container">
-    <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
-      <div class="menubar">
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.bold() }"
-          @click="commands.bold"
-        >
-          <!-- <icon name="bold" /> -->bold
-        </button>
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.italic() }"
-          @click="commands.italic"
-        >
-          <!-- <icon name="italic" /> -->italic
-        </button>
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.strike() }"
-          @click="commands.strike"
-        >
-          <!-- <icon name="strike" /> -->strike
-        </button>
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.underline() }"
-          @click="commands.underline"
-        >
-          <!-- <icon name="underline" /> -->underline
-        </button>
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.paragraph() }"
-          @click="commands.paragraph"
-        >
-          <!-- <icon name="paragraph" /> -->paragraph
-        </button>
-
-        <button
-          class="menubar__button"
-          :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-          @click="commands.heading({ level: 1 })"
-        >
-          H1
-        </button>
-
-        <button
-          class="menubar__button"
-          @click="commands.horizontal_rule"
-        >
-          <!-- <icon name="hr" /> -->hr
-        </button>
-
-        <button
-          class="menubar__button"
-          @click="commands.undo"
-        >
-          <!-- <icon name="undo" /> -->undo
-        </button>
-
-        <button
-          class="menubar__button"
-          @click="commands.redo"
-        >
-          <!-- <icon name="redo" /> -->redo
-        </button>
-
-      </div>
-    </editor-menu-bar>
-    <editor-content class="editor-content" :editor="editor"  v-bind:style="{ 'max-width': width + 'px' }"/>
+    <div class="editor-container" :style="{ 'max-width': width + 'px' }">
+      <editor-menu :editor="editor"></editor-menu>
+      <editor-content class="editor-content" :editor="editor" />
     </div>
 
     <div class="text-tester">
       <p id="textp" ref="textp"></p>
+      <h1 id="hp" ref="hp"></h1>
     </div>
     <div class="flex-inline">
       <select class="gray_bevel" @change="changeMode">
-        <option value="592">{{ $t("modes.textShowcaseCenter") }}</option>
+        <option value="616">{{ $t("modes.textShowcaseCenter") }}</option>
         <option value="626">{{ $t("modes.groupSummaryCenter") }}</option>
         <option value="544">{{ $t("modes.profileCommentCenter") }}</option>
         <option value="534">{{ $t("modes.groupCommentCenter") }}</option>
@@ -114,35 +42,11 @@
 </template>
 
 <script>
-// import "quill/dist/quill.core.css";
-// import "quill/dist/quill.snow.css";
-// import "quill/dist/quill.bubble.css";
 import "prosemirror-view/style/prosemirror.css";
-// import { quillEditor } from "vue-quill-editor";
 
-import { Editor, EditorContent, EditorMenuBar } from "tiptap";
+import { Editor, EditorContent } from "tiptap";
 
-// import Quill from "quill";
-// const Embed = Quill.import("blots/embed");
-
-// class QuillPrecision extends Embed {
-//   static create(value) {
-//     let node = super.create(value);
-//     node.innerHTML = `<span contenteditable=false>${value}%</span>`;
-//     // (${value > 100 ? (value - 100).toFixed(2) + '% to right' : (100 - value).toFixed(2) + '% to left'})
-//     node.setAttribute("title", `Precision`);
-//     return node;
-//   }
-// }
-
-// QuillPrecision.blotName = "precision";
-// QuillPrecision.className = "quill-precision";
-// QuillPrecision.tagName = "span";
-
-console.log("Register precision");
-// Quill.register({
-//   "formats/precision": QuillPrecision,
-// });
+import EditorMenu from "./EditorMenu";
 
 import Logo from "./Logo.vue";
 import Shellcode from "./Shellcode.vue";
@@ -161,63 +65,18 @@ export default {
   components: {
     Logo,
     Shellcode,
-    // Quill,
-    // quillEditor,
     EditorContent,
-    EditorMenuBar,
+    EditorMenu,
   },
+
   name: "maind",
+
   data() {
     return {
       textCentered: false,
-      width: "592",
+      width: "616",
 
       editor: null,
-
-      // editor: "",
-      // editor: "<p>    Example</p>",
-      editorOptions: {
-        placeholder: this.$t("placeholder"),
-        formats: [
-          "bold",
-          "italic",
-          "strike",
-          "underline",
-          "header",
-          "image",
-          "precision",
-        ],
-        modules: {
-          clipboard: {
-            matchers: [
-              [
-                Node.ELEMENT_NODE,
-                (node, delta) => {
-                  delta.ops = delta.ops.map((op) => {
-                    if (op.insert.image) {
-                      if (
-                        op.insert.image.indexOf(
-                          "https://steamcommunity-a.akamaihd.net/economy/emoticon/"
-                        ) !== 0
-                      ) {
-                        return { insert: {} };
-                      }
-                    }
-                    return op;
-                  });
-                  return delta;
-                },
-              ],
-            ],
-            matchVisual: false,
-          },
-          toolbar: [
-            ["bold", "italic", "strike", "underline"],
-            [{ header: 1 }],
-            ["clean"],
-          ],
-        },
-      },
     };
   },
   methods: {
@@ -244,7 +103,7 @@ export default {
         return decodeHTMLEntities;
       })();
 
-      var output = this.editor;
+      var output = this.editor.getHTML();
       output = output.replace(/&nbsp;/g, " ");
       output = output.replace(/<h1>/g, "[h1]").replace(/<\/h1>/g, "[/h1]\n");
       output = output.replace(/<p>/g, "").replace(/<\/p>/g, "\n");
@@ -276,55 +135,12 @@ export default {
 
     reset(e) {
       e.preventDefault();
-      this.editor = "";
-    },
-
-    parseForPrecision() {
-      // This instead of getText() because we have emoticons
-      var output = this.editor;
-      output = output.replace(/&nbsp;/g, " ");
-      output = output.replace(/<h1>/g, "").replace(/<\/h1>/g, "\n");
-      output = output.replace(/<p>/g, "").replace(/<\/p>/g, "\n");
-      output = output.replace(/<strong>/g, "").replace(/<\/strong>/g, "");
-      output = output.replace(/<em>/g, "").replace(/<\/em>/g, "");
-      output = output.replace(/<u>/g, "").replace(/<\/u>/g, "");
-      output = output.replace(/<s>/g, "").replace(/<\/s>/g, "");
-      output = output.replace(/<br>/g, "\n");
-      var r = /<img src="https:\/\/steamcommunity-a\.akamaihd\.net\/economy\/emoticon\/(\w+)">/g;
-      output = output.replace(r, `e`); // single character because image is embed
-      return output;
-    },
-
-    insertPrecision(precision) {
-      var quill = this.$refs.mainQuill.quill,
-        editor = this.parseForPrecision();
-      var lines = editor.split("\n");
-      lines.pop();
-      var insertEmbed = (offset, value) =>
-        quill.insertEmbed(offset, "precision", value);
-      var i = 0;
-      lines.forEach(function (line, index) {
-        if (lines.indexOf(line) != index) {
-          return;
-        } else if (
-          line ===
-          "Unexpected error happened while trying to center this line. Please try again."
-        ) {
-          return;
-        } else if (line === "*THIS LINE WAS TOO WIDE*") {
-          return;
-        } else {
-          insertEmbed(
-            editor.indexOf(line) + i + line.length,
-            precision[i].prec
-          );
-          i++;
-        }
-      });
+      this.editor.setContent("");
     },
 
     centerText(e) {
       e.preventDefault();
+
       console.log("text:", this.editor);
 
       const text = this.editor.getHTML();
@@ -334,14 +150,41 @@ export default {
       console.log(lines);
       let newLines = [];
       for (const line of lines) {
-        const text = line.replace("<p>", "").replace(/^\u200a+|\u200a+$/g, "");
+        const isHeading = line.indexOf("<h1>") !== -1;
+        const text = line
+          .replace(/<p>|<h1>/, "")
+          .replace(/^\u200a|\u2800+|\u200a|\u2800+$/g, "");
         // ^\u200a/g, "");
-        console.log("textfff", text);
+        console.log("textfff", text, isHeading);
         // const pel = document.createElement("p");
         // pel.innerText = text;
-        const pel = this.$refs.textp;
-        this.$refs.textp.innerHtml = text;
+        const pel = isHeading ? this.$refs.hp : this.$refs.textp;
+
+        let longSpacer = "";
+        for (let i = 0; i < 10000; i++) {
+          longSpacer += String.fromCharCode(10240);
+        }
+        pel.innerHTML = longSpacer;
+        const wsWidth = pel.offsetWidth / 10000;
+        console.log("wsWidth", wsWidth);
+
+        longSpacer = "";
+        for (let i = 0; i < 10000; i++) {
+          longSpacer += String.fromCharCode(8202);
+        }
+        pel.innerHTML = longSpacer;
+        const smallwsWidth = pel.offsetWidth / 10000;
+        console.log("smallwsWidth", smallwsWidth);
+
+        pel.innerHTML = text;
         console.log(pel, pel.clientHeight, pel.offsetWidth);
+
+        // const longSpacer = "";
+        // for (let i = 0; i < 10000; i++) {
+        //   longSpacer += "&#8202;";
+        // }
+        // pel.innerHTML = longSpacer;
+        // console.log(pel, pel.clientHeight, pel.offsetWidth);
 
         const textWidth = pel.offsetWidth;
         const allWidth = parseInt(this.width);
@@ -349,23 +192,45 @@ export default {
         const neededOffset = (allWidth - textWidth) / 2;
         console.log("neededOffset", allWidth, textWidth, neededOffset);
 
-        // const wsWidth = 1.25244140625;
-        const wsWidth = 1.541984732824427;
-
-        const wss = neededOffset / wsWidth;
         let spacer = "";
-        for (let i = 0; i < wss; i++) {
-          spacer += "&#8202;";
-          // String.fromCharCode(8202);
-          // spacer += "&nbsp;";
+        let totalOffset = 0;
+        let bigWsCount = 0;
+        let smallwsCount = 0;
+
+        while (totalOffset < neededOffset - wsWidth) {
+          spacer += String.fromCharCode(10240);
+          totalOffset += wsWidth;
+          bigWsCount++;
         }
-        const newLine = "<p>" + spacer + text + "</p>";
+        while (totalOffset < neededOffset - smallwsWidth) {
+          spacer += String.fromCharCode(8202);
+          totalOffset += smallwsWidth;
+          smallwsCount++;
+        }
+
+        console.log("totalOffset", totalOffset, bigWsCount, smallwsCount);
+
+        // const wsWidth = 1.25244140625;
+        // const wsWidth = isHeading ? 1.6699 : 1.0856;
+        // const wsWidth = isHeading ? 9.76318359375 : 8.46142578125;
+
+        // const wss = neededOffset / wsWidth;
+        // let spacer = "";
+        // for (let i = 0; i < wss; i++) {
+        //   // spacer += "&#8202;";
+        //   // String.fromCharCode(8202);
+        //   // spacer += "&nbsp;";
+        //   spacer += String.fromCharCode(10240);
+        // }
+
+        const tag = isHeading ? "h1" : "p";
+        const newLine = `<${tag}>${spacer}${text}</${tag}>`;
         newLines.push(newLine);
-        console.log("nl", newLine);
+        // console.log("nl", newLine);
       }
 
       const newText = newLines.join("");
-      console.log("new Text", newText);
+      // console.log("new Text", newText);
       // const newLines = lines;
       // .map(
       //   (line) => line.replace("<p>", "<p>xx") + "</p>"
@@ -409,33 +274,6 @@ export default {
       }
     },
   },
-  // mounted() {
-  // this.$root.$on("loaded", () => {
-  //   window.addEventListener("beforeunload", function (e) {
-  //     var confirmationMessage = this.$t("confirmationMessage");
-  //     (e || window.event).returnValue = confirmationMessage;
-  //     return confirmationMessage;
-  //   });
-  //   this.$el.className = "loaded";
-  //   this.$refs.mainQuill.quill.root.setAttribute(
-  //     "data-placeholder",
-  //     this.$t("placeholder")
-  //   );
-  //   if (!localStorage.getItem("intro-toast")) {
-  //     this.$toasted.show(this.$t("emoticonsSupported"), {
-  //       action: {
-  //         text: this.$t("howToUse"),
-  //         onClick: (e, toastObject) => {
-  //           toastObject.goAway(0);
-  //           this.$toasted.show(this.$t("instructions.one"));
-  //           this.$toasted.show(this.$t("instructions.two"));
-  //         },
-  //       },
-  //     });
-  //     localStorage.setItem("intro-toast", true);
-  //   }
-  // });
-  // },
 
   mounted() {
     this.editor = new Editor({
@@ -455,61 +293,13 @@ export default {
   beforeDestroy() {
     this.editor.destroy();
   },
-  i18n: {
-    messages: {
-      en: {
-        modes: {
-          textShowcaseCenter: "Text Showcase Center",
-          groupSummaryCenter: "Group Summary Center",
-          profileCommentCenter: "Profile Comment Center",
-          groupCommentCenter: "Group Comment Center",
-          summaryCenter: "Summary Center",
-        },
-        reset: "Reset",
-        copy: "Copy",
-        center: "Center my text",
-        placeholder: "Insert some text...",
-        emoticonsSupported: "Emoticons are supported.",
-        howToUse: "How to use?",
-        instructions: {
-          one: "Simply type :[name]: and press space.",
-          two: "Text will be automatically replaced with an emoticon.",
-        },
-        confirmationMessage: "If you leave the page, your text will be lost.",
-        copied: "Copied",
-        cannotCopy: "Cannot copy",
-      },
-      pl: {
-        modes: {
-          textShowcaseCenter: "Gablota tekstowa",
-          groupSummaryCenter: "Podsumowanie	grupy",
-          profileCommentCenter: "Komentarz na profilu",
-          groupCommentCenter: "Komentarz w grupie",
-          summaryCenter: "Podsumowanie",
-        },
-        reset: "Resetuj",
-        copy: "Kopiuj",
-        center: "Wyśrodkuj",
-        placeholder: "Wpisz jakiś tekst...",
-        emoticonsSupported: "Emotikony są wspierane.",
-        howToUse: "Jak ich używać?",
-        instructions: {
-          one: "Po prostu napisz :[nazwa]: i naciśnij spację.",
-          two: "Tekst zostanie automatycznie zastąpiony emotikoną.",
-        },
-        confirmationMessage:
-          "Jeśli opuścisz tą stronę, twój tekst zostanie utracony.",
-        copied: "Skopiowano",
-        cannotCopy: "Nie można skopiować",
-      },
-    },
-  },
 };
 </script>
 
 <style scoped>
 .editor-container {
   background: #0b0b0b;
+  width: 100%;
 }
 
 #textp {
@@ -525,6 +315,8 @@ export default {
   font-family: futura-pt, sans-serif;
   font-weight: 400;
   font-style: normal;
+  align-items: center;
+  width: 100%;
 }
 
 #maindiv:not(.loaded) {
@@ -620,6 +412,7 @@ select.gray_bevel option {
 
 .editor-content {
   min-height: 400px;
+  width: 100%;
   display: flex;
 }
 
@@ -667,5 +460,35 @@ select.gray_bevel option {
 
 .ProseMirror {
   flex: 1;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.text-tester {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+.text-tester p,
+.editor-content p {
+  font-size: 13px;
+  margin: 0;
+}
+
+.text-tester h1,
+.editor-content h1 {
+  font-size: 20px;
+  line-height: 23px;
+  color: #5aa9d6;
+  font-weight: normal;
+  margin-bottom: 10px;
+  clear: both;
+}
+
+.text-tester h1 {
+  display: inline;
 }
 </style>

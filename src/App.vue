@@ -1,16 +1,14 @@
 <template>
   <div id="app">
-    <Preloader></Preloader>
     <MainWrapper></MainWrapper>
   </div>
 </template>
 
 <script>
-import Preloader from "./components/Preloader.vue";
 import MainWrapper from "./components/Main.vue";
 
 export default {
-  components: { Preloader, MainWrapper },
+  components: { MainWrapper },
   name: "app",
   mounted() {
     var lang = navigator.languages
