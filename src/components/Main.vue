@@ -24,6 +24,8 @@
         :width="width"
       />
     </div>
+
+    <Scripts />
   </div>
 </template>
 
@@ -33,6 +35,7 @@ import CenterButton from './CenterButton'
 import ShowcaseSelect from './ShowcaseSelect'
 import EditorContainer from './EditorContainer'
 import MainHeader from './MainHeader'
+import Scripts from './Scripts'
 
 export default {
   name: 'Maind',
@@ -43,6 +46,7 @@ export default {
     CenterButton,
     ShowcaseSelect,
     EditorContainer,
+    Scripts,
   },
 
   data () {
