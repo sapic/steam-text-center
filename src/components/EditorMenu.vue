@@ -1,7 +1,9 @@
 <template>
-  <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
+  <editor-menu-bar
+    v-slot="{ commands, isActive }"
+    :editor="editor"
+  >
     <div class="menubar">
-
       <button
         class="menubar__button"
         :class="{ 'is-active': isActive.bold() }"
@@ -62,13 +64,12 @@
       >
         <!-- <icon name="redo" /> -->redo
       </button>
-
     </div>
   </editor-menu-bar>
 </template>
 
 <script>
-import { EditorMenuBar } from "tiptap";
+import { EditorMenuBar } from 'tiptap'
 
 export default {
   components: { EditorMenuBar },
@@ -77,7 +78,8 @@ export default {
     editor: {
       type: Object,
       required: false,
+      default: null,
     },
   },
-};
+}
 </script>

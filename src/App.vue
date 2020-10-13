@@ -1,24 +1,24 @@
 <template>
   <div id="app">
-    <MainWrapper></MainWrapper>
+    <MainWrapper />
   </div>
 </template>
 
 <script>
-import MainWrapper from "./components/Main.vue";
+import MainWrapper from './components/Main.vue'
 
 export default {
+  name: 'App',
   components: { MainWrapper },
-  name: "app",
-  mounted() {
+  mounted () {
     var lang = navigator.languages
       ? navigator.languages[0]
-      : navigator.language || navigator.userLanguage;
-    var accepted = ["pl", "en"];
-    lang = lang.substring(0, 2);
-    this.$i18n.locale = accepted.indexOf(lang) !== -1 ? lang : "en";
+      : navigator.language || navigator.userLanguage
+    var accepted = ['pl', 'en']
+    lang = lang.substring(0, 2)
+    this.$i18n.locale = accepted.indexOf(lang) !== -1 ? lang : 'en'
   },
-};
+}
 </script>
 
 <style>

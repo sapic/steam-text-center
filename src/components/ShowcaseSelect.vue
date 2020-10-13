@@ -1,21 +1,34 @@
 <template>
-  <select class="gray_bevel" @change="changeMode">
-    <option value="616">{{ $t("modes.textShowcaseCenter") }}</option>
-    <option value="626">{{ $t("modes.groupSummaryCenter") }}</option>
-    <option value="544">{{ $t("modes.profileCommentCenter") }}</option>
-    <option value="534">{{ $t("modes.groupCommentCenter") }}</option>
-    <option value="454">{{ $t("modes.summaryCenter") }}</option>
+  <select
+    class="gray_bevel"
+    @change="changeMode"
+  >
+    <option value="616">
+      {{ $t("modes.textShowcaseCenter") }}
+    </option>
+    <option value="626">
+      {{ $t("modes.groupSummaryCenter") }}
+    </option>
+    <option value="544">
+      {{ $t("modes.profileCommentCenter") }}
+    </option>
+    <option value="534">
+      {{ $t("modes.groupCommentCenter") }}
+    </option>
+    <option value="454">
+      {{ $t("modes.summaryCenter") }}
+    </option>
   </select>
 </template>
 
 <script>
 export default {
   methods: {
-    changeMode(e) {
-      this.$emit("input", parseInt(e.target.value));
+    changeMode (e) {
+      this.$emit('input', parseInt(e.target.value))
     },
   },
-};
+}
 </script>
 
 <style scoped>

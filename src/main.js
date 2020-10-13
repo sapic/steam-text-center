@@ -19,12 +19,12 @@ const i18n = new VueI18n({
   messages: {
     en: LocaleEn,
     pl: LocalePl,
-  }
+  },
 })
 
 new Vue({
   // router,
   i18n,
   store,
-  render: h => h(App)
+  render: h => h(App),
 }).$mount('#app')
