@@ -173,16 +173,15 @@ body {
 
 .saveButtonShadow {
   background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
-  filter: blur(12px);
+  filter: blur(9px);
   position: relative;
-  right: 1px;
+  right: 2px;
   height: 34px;
   width: 146px;
-  top: 3px;
+  top: 5px;
 }
 
 .btn_profile_action:hover {
-  color: #000;
   background: #fff;
 }
 
