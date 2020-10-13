@@ -66,6 +66,56 @@ export default class ClipboardHook extends Extension {
             return html
           },
 
+          clipboardTextSerializer(p) {
+            let t = "";
+            p.content.nodesBetween(0, p.content.size, x => {
+              if (x.type.name === "text") {
+                return
+              }
+
+              if (x.type.name === "horizontal_rule") {
+                t += "[hr][/hr]"
+                return
+              }
+
+              let textContent = x.content.content
+                .map(c => {
+                  if (c.marks.length === 0) {
+                    return c.text
+                  }
+
+                  let text = c.text
+
+                  for (const mark of c.marks) {
+                    console.log('mark', mark)
+                    switch (mark.type.name) {
+                      case "bold":
+                        text = `[b]${text}[/b]`;
+                        break
+                      case "italic":
+                        text = `[i]${text}[/i]`;
+                        break
+                      case "strike":
+                        text = `[strike]${text}[/strike]`;
+                        break
+                      case "underline":
+                        text = `[u]${text}[/u]`;
+                        break
+                    }
+                  }
+
+                  return text
+                }).join("")
+
+              if (x.type.name === "heading") {
+                textContent = `[h1]${textContent}[/h1]`;
+              }
+
+              t += textContent;
+            });
+            return t;
+          },
+
           transformPasted(pasted, x, y) {
             // console.log('editor', this.editor)
             // return

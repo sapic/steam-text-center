@@ -118,7 +118,7 @@ export default {
         .replace(/<s>/g, "[strike]")
         .replace(/<\/s>/g, "[/strike]");
 
-      output = output.replace(/<hr>/g, "[hr]");
+      output = output.replace(/<hr>/g, "[hr][/hr]");
 
       output = output.replace(/<br>/g, "\n");
       output = output.replace(
