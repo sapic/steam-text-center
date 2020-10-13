@@ -111,19 +111,15 @@ export default {
 .menubar__button {
   width: 32px;
   height: 22px;
-  padding: 0;
   display: flex;
   background: none;
   border: none;
-  /* padding: 2px; */
   color: white;
   font-size: 13.3333px;
   font-weight: 700;
-
   padding: 3.6px 9px;
-  margin-right: 0.2rem;
-  border-radius: 3px;
   cursor: pointer;
+  margin: 0 auto;
 }
 
 .menubar__button:focus {

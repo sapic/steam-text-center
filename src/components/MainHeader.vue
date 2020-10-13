@@ -71,8 +71,8 @@ export default {
   flex-direction: column;
 }
 .logo__plus {
-  width: 88px;
-  height: 88px;
+  width: 50px;
+  height: 50px;
   margin: 0 40px 0 40px;
 }
 

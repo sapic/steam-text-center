@@ -35,7 +35,7 @@ export default {
 select.gray_bevel,
 .btn_profile_action {
   height: 35px;
-  margin: 0 0.4em 0.4em 0;
+  margin: 5px 0.4em 0.4em 0;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -49,12 +49,12 @@ select.gray_bevel,
 
 select.gray_bevel {
   padding: 0 0.1em 0.1em 1em;
-  border: 0.15em solid #fff;
-  background: none;
+  border: 0.15em solid #0B0B0B;
+  background-color: #0B0B0B;
   font-size: 0.9em;
 }
 
 select.gray_bevel option {
-  background: #121111;
+  background: #0B0B0B;
 }
 </style>

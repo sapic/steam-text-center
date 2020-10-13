@@ -141,7 +141,7 @@ body {
 
 .btn_profile_action {
   height: 35px;
-  margin: 0 0.4em 0.4em 0;
+  margin: 5px 0.4em 0.4em 0;
   border-radius: 0.12em;
   box-sizing: border-box;
   text-decoration: none;
@@ -153,16 +153,37 @@ body {
   outline: none;
   display: flex;
   align-items: center;
+  padding: 0.25em 1.2em;
+  border: 0.13em solid #0B0B0B;
+  background-color: #0B0B0B;
+}
+
+.center_button {
+  background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%) !important;
+  opacity: 0.9;
+  height: 34px;
+  border: none;
+  bottom: 34px;
+  position: relative;
+}
+
+.center_button:hover {
+  opacity: 1;
+}
+
+.saveButtonShadow {
+  background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
+  filter: blur(12px);
+  position: relative;
+  right: 1px;
+  height: 34px;
+  width: 146px;
+  top: 3px;
 }
 
 .btn_profile_action:hover {
   color: #000;
   background: #fff;
-}
-
-.btn_profile_action {
-  padding: 0.25em 1.2em;
-  border: 0.13em solid #fff;
 }
 
 @media all and (min-width: 600px) {

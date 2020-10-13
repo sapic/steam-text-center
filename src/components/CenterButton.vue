@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <span>
+    <div class="saveButtonShadow" />
     <a
-      class="btn_profile_action btn_medium"
+      class="btn_profile_action btn_medium center_button"
       href="#"
       @click="centerText"
     >
@@ -18,7 +19,7 @@
         ref="hp"
       />
     </div>
-  </div>
+  </span>
 </template>
 
 <script>
