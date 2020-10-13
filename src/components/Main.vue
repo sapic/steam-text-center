@@ -4,18 +4,14 @@
     class="loaded"
   >
     <GithubButton />
+
     <Logo class="animated pulse" />
     <Shellcode class="animated pulse" />
-    <div
-      class="editor-container"
-      :style="{ 'max-width': width + 'px' }"
-    >
-      <editor-menu :editor="editor" />
-      <editor-content
-        class="editor-content"
-        :editor="editor"
-      />
-    </div>
+
+    <EditorContainer
+      v-model="editor"
+      :width="width"
+    />
 
     <div class="flex-inline">
       <ShowcaseSelect v-model="width" />
@@ -36,31 +32,14 @@
 </template>
 
 <script>
-import 'prosemirror-view/style/prosemirror.css'
-
 import CopyButton from './CopyButton'
 import CenterButton from './CenterButton'
 import ShowcaseSelect from './ShowcaseSelect'
 import GithubButton from './GithubButton'
-
-import { Editor, EditorContent } from 'tiptap'
-
-import EditorMenu from './EditorMenu'
+import EditorContainer from './EditorContainer'
 
 import Logo from './Logo.vue'
 import Shellcode from './Shellcode.vue'
-import {
-  Heading,
-  HorizontalRule,
-  Bold,
-  Italic,
-  Link,
-  Strike,
-  Underline,
-  History,
-} from 'tiptap-extensions'
-
-import ClipboardHook from './ClipboardHook.js'
 
 export default {
 
@@ -68,12 +47,11 @@ export default {
   components: {
     Logo,
     Shellcode,
-    EditorContent,
-    EditorMenu,
     CopyButton,
     CenterButton,
     ShowcaseSelect,
     GithubButton,
+    EditorContainer,
   },
 
   data () {
@@ -85,25 +63,6 @@ export default {
     }
   },
 
-  mounted () {
-    this.editor = new Editor({
-      extensions: [
-        new Heading(),
-        new HorizontalRule(),
-        new Bold(),
-        new Italic(),
-        new Link(),
-        new Strike(),
-        new Underline(),
-        new History(),
-        new ClipboardHook(),
-      ],
-      content: '<p>This is just a boring paragraph</p>',
-    })
-  },
-  beforeDestroy () {
-    this.editor.destroy()
-  },
   methods: {
     reset (e) {
       e.preventDefault()
@@ -114,17 +73,6 @@ export default {
 </script>
 
 <style scoped>
-.editor-container {
-  background: #0b0b0b;
-  width: 100%;
-}
-
-#textp {
-  display: inline;
-  margin: 0;
-  padding: 0;
-}
-
 #maindiv {
   display: flex;
   flex-direction: column;
@@ -162,19 +110,6 @@ export default {
   text-align: center;
 }
 
-.center-text-box {
-  font-family: Arial, Helvetica, Verdana, sans-serif;
-  font-size: 13px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  width: 90vw;
-  height: 50vh;
-  margin: 10px 0;
-  border: none;
-  background: #0b0b0b;
-  overflow-y: hidden;
-  align-self: center;
-}
-
 .flex-inline {
   display: flex;
   flex-wrap: wrap;
@@ -185,42 +120,6 @@ img.emoticon {
   vertical-align: text-bottom;
   height: 18px;
   width: 18px;
-}
-
-.btn_profile_action {
-  height: 35px;
-  margin: 0 0.4em 0.4em 0;
-  border-radius: 0.12em;
-  box-sizing: border-box;
-  text-decoration: none;
-  font-family: roboto, sans-serif;
-  font-weight: 300;
-  color: #fff;
-  text-align: center;
-  transition: all 0.2s;
-  outline: none;
-}
-
-.btn_profile_action:hover {
-  color: #000;
-  background: #fff;
-}
-
-.btn_profile_action {
-  padding: 0.25em 1.2em;
-  border: 0.13em solid #fff;
-}
-
-.editor-content {
-  min-height: 400px;
-  width: 100%;
-  display: flex;
-}
-
-@media all and (min-width: 600px) {
-  .btn_profile_action:nth-of-type(1) {
-    margin-left: auto;
-  }
 }
 
 @media all and (max-height: 710px) {
@@ -235,22 +134,12 @@ body {
   background: #121111;
 }
 
-.ql-editor {
-  white-space: normal !important;
-}
-
 .ProseMirror {
   flex: 1;
 }
 
 .ProseMirror:focus {
   outline: none;
-}
-
-.text-tester {
-  position: absolute;
-  top: -9999px;
-  left: -9999px;
 }
 
 .text-tester p,
@@ -271,5 +160,37 @@ body {
 
 .text-tester h1 {
   display: inline;
+}
+
+.btn_profile_action {
+  height: 35px;
+  margin: 0 0.4em 0.4em 0;
+  border-radius: 0.12em;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: roboto, sans-serif;
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  transition: all 0.2s;
+  outline: none;
+  display: flex;
+  align-items: center;
+}
+
+.btn_profile_action:hover {
+  color: #000;
+  background: #fff;
+}
+
+.btn_profile_action {
+  padding: 0.25em 1.2em;
+  border: 0.13em solid #fff;
+}
+
+@media all and (min-width: 600px) {
+  .btn_profile_action:nth-of-type(1) {
+    margin-left: auto;
+  }
 }
 </style>

@@ -98,3 +98,17 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+#textp {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.text-tester {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+</style>
