@@ -3,11 +3,7 @@
     id="maindiv"
     class="loaded"
   >
-    <GithubButton />
-
-    <Logo class="animated pulse" />
-    <Shellcode class="animated pulse" />
-
+    <MainHeader />
     <EditorContainer
       v-model="editor"
       :width="width"
@@ -35,22 +31,17 @@
 import CopyButton from './CopyButton'
 import CenterButton from './CenterButton'
 import ShowcaseSelect from './ShowcaseSelect'
-import GithubButton from './GithubButton'
 import EditorContainer from './EditorContainer'
-
-import Logo from './Logo.vue'
-import Shellcode from './Shellcode.vue'
+import MainHeader from './MainHeader'
 
 export default {
-
   name: 'Maind',
+
   components: {
-    Logo,
-    Shellcode,
+    MainHeader,
     CopyButton,
     CenterButton,
     ShowcaseSelect,
-    GithubButton,
     EditorContainer,
   },
 
@@ -86,24 +77,6 @@ export default {
 
 #maindiv:not(.loaded) {
   display: none;
-}
-
-#maindiv svg#logo,
-#maindiv svg#Shellcode {
-  fill: white;
-  width: 100%;
-  align-self: center;
-}
-
-#maindiv svg#logo {
-  max-width: 150px;
-  margin-left: 10px;
-}
-
-#maindiv svg#Shellcode {
-  max-width: 100px;
-  height: 30px;
-  margin-left: -13px;
 }
 
 #maindiv p {
