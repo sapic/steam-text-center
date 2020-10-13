@@ -154,8 +154,8 @@ body {
   display: flex;
   align-items: center;
   padding: 0.25em 1.2em;
-  border: 0.13em solid #0B0B0B;
-  background-color: #0B0B0B;
+  border: 0.13em solid #0b0b0b;
+  background-color: #0b0b0b;
 }
 
 .center_button {

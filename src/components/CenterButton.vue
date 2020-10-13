@@ -71,7 +71,7 @@ export default {
         pel.innerHTML = text
 
         const textWidth = pel.offsetWidth
-        const allWidth = parseInt(this.width)
+        const allWidth = this.width
 
         const neededOffset = (allWidth - textWidth) / 2
 
