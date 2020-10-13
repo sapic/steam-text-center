@@ -9,10 +9,6 @@ export default class ClipboardHook extends Extension {
   get defaultOptions () {
   }
 
-  init () {
-    console.log('clipboard init', this.editor)
-  }
-
   get plugins () {
     const editor = this.editor
     return [
@@ -39,7 +35,6 @@ export default class ClipboardHook extends Extension {
                   let text = c.text
 
                   for (const mark of c.marks) {
-                    console.log('mark', mark)
                     switch (mark.type.name) {
                       case 'bold':
                         text = `[b]${text}[/b]`

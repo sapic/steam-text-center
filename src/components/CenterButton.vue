@@ -43,7 +43,7 @@ export default {
 
       const lines = text.split(/<\/p>|<\/h1>/)
       lines.pop()
-      console.log(lines)
+
       const newLines = []
       for (const line of lines) {
         const isHeading = line.indexOf('<h1>') !== -1
@@ -68,7 +68,6 @@ export default {
         const smallwsWidth = pel.offsetWidth / 10000
 
         pel.innerHTML = text
-        console.log(pel, pel.clientHeight, pel.offsetWidth)
 
         const textWidth = pel.offsetWidth
         const allWidth = parseInt(this.width)

@@ -2,16 +2,28 @@
   <div class="header">
     <GithubButton />
 
-    <div class="logo__shellcode">
+    <a
+      class="logo__shellcode"
+      href="https://shellcode.team/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <Logo class="animated pulse" />
       <Shellcode class="animated pulse" />
-    </div>
+    </a>
+
     <div class="logo__plus">
       <img src="@/assets/plus.svg">
     </div>
-    <div class="logo__sapic">
+
+    <a
+      class="logo__sapic"
+      href="https://steam.design/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       <img src="@/assets/logo.png">
-    </div>
+    </a>
   </div>
 </template>
 

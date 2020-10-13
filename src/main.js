@@ -8,6 +8,7 @@ import VueClipboard from 'vue-clipboard2'
 
 import LocaleEn from '@/locales/en.js'
 import LocalePl from '@/locales/pl.js'
+import LocaleRu from '@/locales/ru.js'
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ const i18n = new VueI18n({
   messages: {
     en: LocaleEn,
     pl: LocalePl,
+    ru: LocaleRu,
   },
 })
 

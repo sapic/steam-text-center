@@ -1,6 +1,6 @@
 <template>
   <a
-    href="https://github.com/alza54/steam-text-center-tool"
+    href="https://github.com/sapic/steam-text-center"
     class="github-corner"
     aria-label="View source on GitHub"
   ><svg
