@@ -22,7 +22,7 @@
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img src="@/assets/logo.png">
+      <img src="@/assets/logo.svg">
     </a>
   </div>
 </template>
