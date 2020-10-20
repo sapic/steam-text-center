@@ -1,5 +1,5 @@
 # Steam Text Center Tool by shellcode.team
-A tool which automatically centers text for your Steam profile. Original code - https://github.com/alza54/steam-text-center-to. 
+A tool which automatically centers text for your Steam profile. Original code - https://github.com/alza54/steam-text-center-tool. 
 
 In the proccess of ressurection almost everything was rewritten. Text editor from Quill to Tiptap. Sass removed since it was used in 3 places. Nightmare and all server side code removed since we don't need it. Vue cli instead of custom webpack configs.
 
