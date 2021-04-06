@@ -1,7 +1,7 @@
 <template>
   <div
     class="editor-container"
-    :style="{ 'max-width': width + 16 + 'px' }"
+    :style="{ 'width': width + 16 + 'px' }"
   >
     <editor-menu :editor="editor" />
     <editor-content
@@ -85,5 +85,12 @@ export default {
   display: flex;
   padding: 0 8px;
   box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+  .editor-container {
+    transform: scale(0.55, 0.55);
+    margin: -80px 0;
+  }
 }
 </style>

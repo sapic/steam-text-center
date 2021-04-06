@@ -2,28 +2,32 @@
   <div class="header">
     <GithubButton />
 
-    <a
-      class="logo__shellcode"
-      href="https://shellcode.team/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <Logo class="animated pulse" />
-      <Shellcode class="animated pulse" />
-    </a>
+    <div class="header__logos">
+      <a
+        class="logo__shellcode"
+        href="https://shellcode.team/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <Logo class="animated pulse" />
+        <Shellcode class="animated pulse" />
+      </a>
 
-    <div class="logo__plus">
-      <img src="@/assets/plus.svg">
+      <div class="logo__plus">
+        <img src="@/assets/plus.svg">
+      </div>
+
+      <a
+        class="logo__sapic"
+        href="https://steam.design/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="@/assets/logo.svg">
+      </a>
     </div>
 
-    <a
-      class="logo__sapic"
-      href="https://steam.design/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img src="@/assets/logo.svg">
-    </a>
+    <h1>Center text for your Steam Profile Text Showcase and Summary Containers!</h1>
   </div>
 </template>
 
@@ -45,7 +49,18 @@ export default {
 .header {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
+  flex-direction: column;
+}
+
+.header__logos {
+  display: flex;
+  align-items: center;
+}
+
+h1 {
+  max-width: 600px;
+  text-align: center;
 }
 
 .header svg#logo,
@@ -84,5 +99,27 @@ export default {
 .logo__sapic img {
   width: 175px;
   height: 175px;
+}
+
+@media screen and (max-width: 768px) {
+  .header {
+    margin: 0 20px;
+  }
+
+  h1 {
+    max-width: 600px;
+    text-align: center;
+    font-size: 16px;
+  }
+
+  .logo__sapic {
+    width: 120px;
+    height: 120px;
+  }
+
+  .logo__sapic img {
+    width: 120px;
+    height: 120px;
+  }
 }
 </style>
