@@ -1,72 +1,68 @@
 <template>
-<div>hi</div>
-  <!-- <editor-menu-bar
-    v-slot="{ commands, isActive }"
-    :editor="editor"
-  >
+  <div v-if="editor">
     <div class="menubar">
       <button
         class="menubar__button"
-        :class="{ 'is-active': isActive.bold() }"
-        @click="commands.bold"
+        :class="{ 'is-active': editor.isActive('bold') }"
+        @click="editor.chain().focus().toggleBold().run()"
       >
         <IconBold />
       </button>
 
       <button
         class="menubar__button"
-        :class="{ 'is-active': isActive.italic() }"
-        @click="commands.italic"
+        :class="{ 'is-active': editor.isActive('italic') }"
+        @click="editor.chain().focus().toggleItalic().run()"
       >
         <IconItalic />
       </button>
 
       <button
         class="menubar__button"
-        :class="{ 'is-active': isActive.strike() }"
-        @click="commands.strike"
+        :class="{ 'is-active': editor.isActive('strike') }"
+        @click="editor.chain().focus().toggleStrike().run()"
       >
         <IconStrike />
       </button>
 
       <button
         class="menubar__button"
-        :class="{ 'is-active': isActive.underline() }"
-        @click="commands.underline"
+        :class="{ 'is-active': editor.isActive('underline') }"
+        @click="editor.chain().focus().toggleUnderline().run()"
       >
         <IconUnderline />
       </button>
 
       <button
         class="menubar__button"
-        :class="{ 'is-active': isActive.heading({ level: 1 }) }"
-        @click="commands.heading({ level: 1 })"
+        :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+        @click="editor.chain().focus().toggleHeading({level: 1}).run()"
       >
         H1
       </button>
 
       <button
         class="menubar__button"
-        @click="commands.horizontal_rule"
+        @click="editor.chain().focus().setHorizontalRule().run()"
       >
         <IconHR />
       </button>
 
       <button
         class="menubar__button"
-        @click="commands.undo"
+        @click="editor.chain().focus().undo().run()"
       >
         <IconUndo />
       </button>
 
       <button
         class="menubar__button"
-        @click="commands.redo"
+        @click="editor.chain().focus().redo().run()"
       >
         <IconRedo />
       </button>
     </div>
-  </editor-menu-bar> -->
+  </div>
 </template>
 
 <script>

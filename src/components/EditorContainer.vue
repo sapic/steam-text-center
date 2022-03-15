@@ -25,7 +25,14 @@ import 'prosemirror-view/style/prosemirror.css'
 //   History,
 // } from 'tiptap-extensions'
 
-import { Editor, EditorContent } from '@tiptap/vue-3'
+// import Document from '@tiptap/extension-document'
+// import Paragraph from '@tiptap/extension-paragraph'
+// import Text from '@tiptap/extension-text'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+// import HorizontalRule from '@tiptap/extension-horizontal-rule'
+
+import { Editor, EditorContent, useEditor } from '@tiptap/vue-3'
 
 import EditorMenu from './EditorMenu.vue'
 // import ClipboardHook from './ClipboardHook.js'
@@ -43,33 +50,57 @@ export default {
     },
   },
 
-  data () {
-    return {
-      editor: null,
-    }
+  setup () {
+    const editor = useEditor({
+      content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+      extensions: [
+        StarterKit,
+        Underline,
+        // HorizontalRule,
+      ],
+    })
+
+    return { editor }
   },
 
   mounted () {
-    this.editor = new Editor({
-      extensions: [
-        // new Heading(),
-        // new HorizontalRule(),
-        // new Bold(),
-        // new Italic(),
-        // new Link(),
-        // new Strike(),
-        // new Underline(),
-        // new History(),
-        // new ClipboardHook(),
-      ],
-      content: '<p>This is just a boring paragraph</p>',
-    })
+    this.$emit('updateEditor', this.editor)
+  }
 
-    this.$emit('input', this.editor)
-  },
-  beforeDestroy () {
-    this.editor.destroy()
-  },
+  // data () {
+  //   return {
+  //     editor: null,
+  //   }
+  // },
+
+  // mounted () {
+  //   this.editor = new Editor({
+  //     content: '<p>I’m running Tiptap with Vue.js. 🎉</p>',
+  //     extensions: [
+  //       StarterKit,
+  //     ],
+  //     // extensions: [
+  //     //   Document,
+  //     //   Paragraph,
+  //     //   Text,
+  //     //   // new Heading(),
+  //     //   // new HorizontalRule(),
+  //     //   // new Bold(),
+  //     //   // new Italic(),
+  //     //   // new Link(),
+  //     //   // new Strike(),
+  //     //   // new Underline(),
+  //     //   // new History(),
+  //     //   // new ClipboardHook(),
+  //     // ],
+  //     // content: '<p>This is just a boring paragraph</p>',
+  //   })
+
+  //   // this.$emit('input', this.editor)
+  // },
+  // beforeUnmount () {
+  //   this.editor.destroy()
+  // },
 }
 </script>
 

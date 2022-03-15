@@ -5,7 +5,7 @@
   >
     <MainHeader />
     <EditorContainer
-      v-model="editor"
+      @updateEditor="updateEditor"
       :width="width"
     />
 
@@ -63,6 +63,10 @@ export default {
       e.preventDefault()
       this.editor.setContent('')
     },
+
+    updateEditor(editor) {
+      this.editor = editor
+    }
   },
 }
 </script>

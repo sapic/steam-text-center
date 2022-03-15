@@ -93,7 +93,7 @@ export default {
       }
 
       const newText = newLines.join('')
-      this.editor.setContent(newText)
+      this.editor.chain().setContent(newText).run()
     },
   },
 }
