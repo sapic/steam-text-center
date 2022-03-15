@@ -1,4 +1,4 @@
-import { Extension, Plugin } from 'tiptap'
+import { Extension, Plugin } from '@tiptap/vue-3'
 import { DOMParser } from 'prosemirror-model'
 
 export default class ClipboardHook extends Extension {

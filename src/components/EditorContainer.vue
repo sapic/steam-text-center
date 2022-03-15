@@ -14,21 +14,21 @@
 <script>
 import 'prosemirror-view/style/prosemirror.css'
 
-import {
-  Heading,
-  HorizontalRule,
-  Bold,
-  Italic,
-  Link,
-  Strike,
-  Underline,
-  History,
-} from 'tiptap-extensions'
+// import {
+//   Heading,
+//   HorizontalRule,
+//   Bold,
+//   Italic,
+//   Link,
+//   Strike,
+//   Underline,
+//   History,
+// } from 'tiptap-extensions'
 
-import { Editor, EditorContent } from 'tiptap'
+import { Editor, EditorContent } from '@tiptap/vue-3'
 
-import EditorMenu from './EditorMenu'
-import ClipboardHook from './ClipboardHook.js'
+import EditorMenu from './EditorMenu.vue'
+// import ClipboardHook from './ClipboardHook.js'
 
 export default {
   components: {
@@ -52,15 +52,15 @@ export default {
   mounted () {
     this.editor = new Editor({
       extensions: [
-        new Heading(),
-        new HorizontalRule(),
-        new Bold(),
-        new Italic(),
-        new Link(),
-        new Strike(),
-        new Underline(),
-        new History(),
-        new ClipboardHook(),
+        // new Heading(),
+        // new HorizontalRule(),
+        // new Bold(),
+        // new Italic(),
+        // new Link(),
+        // new Strike(),
+        // new Underline(),
+        // new History(),
+        // new ClipboardHook(),
       ],
       content: '<p>This is just a boring paragraph</p>',
     })

@@ -1,5 +1,6 @@
 <template>
-  <editor-menu-bar
+<div>hi</div>
+  <!-- <editor-menu-bar
     v-slot="{ commands, isActive }"
     :editor="editor"
   >
@@ -17,7 +18,7 @@
         :class="{ 'is-active': isActive.italic() }"
         @click="commands.italic"
       >
-        <!-- <icon name="italic" /> --><IconItalic />
+        <IconItalic />
       </button>
 
       <button
@@ -25,7 +26,7 @@
         :class="{ 'is-active': isActive.strike() }"
         @click="commands.strike"
       >
-        <!-- <icon name="strike" /> --><IconStrike />
+        <IconStrike />
       </button>
 
       <button
@@ -33,7 +34,7 @@
         :class="{ 'is-active': isActive.underline() }"
         @click="commands.underline"
       >
-        <!-- <icon name="underline" /> --><IconUnderline />
+        <IconUnderline />
       </button>
 
       <button
@@ -48,40 +49,40 @@
         class="menubar__button"
         @click="commands.horizontal_rule"
       >
-        <!-- <icon name="hr" /> --><IconHR />
+        <IconHR />
       </button>
 
       <button
         class="menubar__button"
         @click="commands.undo"
       >
-        <!-- <icon name="undo" /> --><IconUndo />
+        <IconUndo />
       </button>
 
       <button
         class="menubar__button"
         @click="commands.redo"
       >
-        <!-- <icon name="redo" /> --><IconRedo />
+        <IconRedo />
       </button>
     </div>
-  </editor-menu-bar>
+  </editor-menu-bar> -->
 </template>
 
 <script>
-import { EditorMenuBar } from 'tiptap'
+// import { EditorMenuBar } from '@tiptap/vue-3'
 
-import IconBold from '@/assets/editor/bold'
-import IconHR from '@/assets/editor/hr'
-import IconItalic from '@/assets/editor/italic'
-import IconRedo from '@/assets/editor/redo'
-import IconStrike from '@/assets/editor/strike'
-import IconUnderline from '@/assets/editor/underline'
-import IconUndo from '@/assets/editor/undo'
+import IconBold from '@/assets/editor/bold.vue'
+import IconHR from '@/assets/editor/hr.vue'
+import IconItalic from '@/assets/editor/italic.vue'
+import IconRedo from '@/assets/editor/redo.vue'
+import IconStrike from '@/assets/editor/strike.vue'
+import IconUnderline from '@/assets/editor/underline.vue'
+import IconUndo from '@/assets/editor/undo.vue'
 
 export default {
   components: {
-    EditorMenuBar,
+    // EditorMenuBar,
     IconBold,
     IconStrike,
     IconHR,

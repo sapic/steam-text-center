@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import CopyButton from './CopyButton'
-import CenterButton from './CenterButton'
-import ShowcaseSelect from './ShowcaseSelect'
-import EditorContainer from './EditorContainer'
-import MainHeader from './MainHeader'
-import Scripts from './Scripts'
+import CopyButton from './CopyButton.vue'
+import CenterButton from './CenterButton.vue'
+import ShowcaseSelect from './ShowcaseSelect.vue'
+import EditorContainer from './EditorContainer.vue'
+import MainHeader from './MainHeader.vue'
+import Scripts from './Scripts.vue'
 
 export default {
   name: 'Maind',

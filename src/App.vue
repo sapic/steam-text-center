@@ -11,10 +11,10 @@ export default {
   name: 'App',
   components: { MainWrapper },
   mounted () {
-    var lang = navigator.languages
+    let lang = navigator.languages
       ? navigator.languages[0]
       : navigator.language || navigator.userLanguage
-    var accepted = ['pl', 'en']
+    const accepted = ['pl', 'en', 'ru']
     lang = lang.substring(0, 2)
     this.$i18n.locale = accepted.indexOf(lang) !== -1 ? lang : 'en'
   },

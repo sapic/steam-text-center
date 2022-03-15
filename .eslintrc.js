@@ -1,12 +1,13 @@
 module.exports = {
   root: true,
   // parser: 'babel-eslint',
-  parserOptions: {
-    parser: 'babel-eslint',
-  },
+  // parserOptions: {
+  //   parser: 'babel-eslint',
+  // },
   env: {
     browser: true,
-    node: true,
+    // node: true,
+    es2021: true,
   },
   extends: ['standard', 'plugin:vue/recommended'],
   // required to lint *.vue files
@@ -20,6 +21,7 @@ module.exports = {
     'vue/no-unused-components': ['error', {
       ignoreWhenBindingPresent: true,
     }],
+    'vue/multi-word-component-names': 'off'
   },
   globals: {},
 }
