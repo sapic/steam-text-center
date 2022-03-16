@@ -21,7 +21,7 @@ module.exports = {
     'vue/no-unused-components': ['error', {
       ignoreWhenBindingPresent: true,
     }],
-    'vue/multi-word-component-names': 'off'
+    'vue/multi-word-component-names': 'off',
   },
   globals: {},
 }

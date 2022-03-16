@@ -29,5 +29,11 @@
     "eslint-plugin-standard": "^5.0.0",
     "eslint-plugin-vue": "^8.5.0",
     "vite": "^2.8.6"
+  },
+  "packageManager": "yarn@3.2.0",
+  "dependenciesMeta": {
+    "prosemirror-view": {
+      "unplugged": true
+    }
   }
 }

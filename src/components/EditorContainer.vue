@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import 'prosemirror-view/style/prosemirror.css'
+import './prosemirror.css'
 import StarterKit from '@tiptap/starter-kit'
 import Underline from '@tiptap/extension-underline'
 
