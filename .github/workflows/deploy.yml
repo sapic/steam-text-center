@@ -31,5 +31,5 @@ jobs:
           ssh-keyscan -H 159.65.199.184 >> "$ssh_path/known_hosts"
 
           ssh -i $HOME/.ssh/deploy_key root@159.65.199.184 << EOF
-            ./restart_bgbattle.sh
+            ./restart_center.sh
           EOF
