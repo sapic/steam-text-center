@@ -61,7 +61,7 @@ export default {
   methods: {
     reset (e) {
       e.preventDefault()
-      this.editor.setContent('')
+      this.editor.chain().setContent('').run()
     },
 
     updateEditor(editor) {
@@ -166,8 +166,8 @@ body {
   background-color: #0b0b0b;
 }
 
-.center_button {
-  background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%) !important;
+.btn_profile_action.center_button {
+  background: linear-gradient(45deg, #36bbf7 0%, #702df9 100%);
   opacity: 0.9;
   height: 34px;
   border: none;
@@ -175,8 +175,10 @@ body {
   position: relative;
 }
 
-.center_button:hover {
+.btn_profile_action.center_button:hover {
   opacity: 1;
+  color: #fff;
+  background: linear-gradient(45deg, #36bbf7 20%, #702df9 100%);
 }
 
 .saveButtonShadow {
@@ -191,6 +193,7 @@ body {
 
 .btn_profile_action:hover {
   background: #fff;
+  color: black;
 }
 
 @media all and (min-width: 600px) {
