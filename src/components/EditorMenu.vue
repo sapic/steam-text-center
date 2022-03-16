@@ -66,8 +66,6 @@
 </template>
 
 <script>
-// import { EditorMenuBar } from '@tiptap/vue-3'
-
 import IconBold from '@/assets/editor/bold.vue'
 import IconHR from '@/assets/editor/hr.vue'
 import IconItalic from '@/assets/editor/italic.vue'
@@ -78,7 +76,6 @@ import IconUndo from '@/assets/editor/undo.vue'
 
 export default {
   components: {
-    // EditorMenuBar,
     IconBold,
     IconStrike,
     IconHR,
@@ -132,6 +129,5 @@ export default {
   fill: currentColor;
   width: 100%;
   height: 100%;
-  /* height: 24px; */
 }
 </style>

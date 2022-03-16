@@ -19,7 +19,7 @@ import Underline from '@tiptap/extension-underline'
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 
 import EditorMenu from './EditorMenu.vue'
-// import ClipboardHook from './ClipboardHook.js'
+import ClipboardHook from './ClipboardHook.js'
 
 export default {
   components: {
@@ -40,6 +40,7 @@ export default {
       extensions: [
         StarterKit,
         Underline,
+        ClipboardHook,
       ],
     })
 
