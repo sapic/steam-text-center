@@ -10,7 +10,7 @@
     />
 
     <div class="flex-inline">
-      <ShowcaseSelect v-model="width" />
+      <ShowcaseSelect v-model="width" @updateWidth="updateWidth" />
       <a
         class="btn_profile_action btn_medium"
         href="#"
@@ -66,7 +66,11 @@ export default {
 
     updateEditor(editor) {
       this.editor = editor
-    }
+    },
+
+    updateWidth (px) {
+      this.width = px
+    } 
   },
 }
 </script>

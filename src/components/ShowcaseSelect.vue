@@ -25,7 +25,7 @@
 export default {
   methods: {
     changeMode (e) {
-      this.$emit('input', parseInt(e.target.value))
+      this.$emit('updateWidth', parseInt(e.target.value))
     },
   },
 }
