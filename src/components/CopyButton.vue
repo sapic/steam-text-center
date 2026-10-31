@@ -9,6 +9,28 @@
 </template>
 
 <script>
+// navigator.clipboard needs a secure context (the site is HTTPS-only);
+// the execCommand fallback covers old browsers, as vue-clipboard2 did.
+function copyText (text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(text).catch(() => legacyCopy(text))
+  }
+  legacyCopy(text)
+  return Promise.resolve()
+}
+
+function legacyCopy (text) {
+  const ta = document.createElement('textarea')
+  ta.value = text
+  ta.setAttribute('readonly', '')
+  ta.style.position = 'fixed'
+  ta.style.top = '-9999px'
+  document.body.appendChild(ta)
+  ta.select()
+  document.execCommand('copy')
+  document.body.removeChild(ta)
+}
+
 export default {
   props: {
     editor: {
@@ -65,7 +87,7 @@ export default {
       const r = /<img src="https:\/\/steamcommunity-a\.akamaihd\.net\/economy\/emoticon\/(\w+)">/g
       output = output.replace(r, ':$1:')
       output = decodeEntities(output)
-      this.$copyText(output)
+      copyText(output)
       // .then(
       //   (e) => {
       //     alert(this.$t("copied"));

@@ -14,7 +14,6 @@
 <script>
 import './prosemirror.css'
 import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
 
 import { EditorContent, useEditor } from '@tiptap/vue-3'
 
@@ -34,12 +33,19 @@ export default {
     },
   },
 
+  emits: ['updateEditor'],
+
   setup () {
     const editor = useEditor({
       content: '<p>Enter you showcase text here</p>',
       extensions: [
-        StarterKit,
-        Underline,
+        // Tiptap 3 StarterKit already ships Underline; Link and the
+        // trailing-node / list-keymap extras are not part of the Steam markup.
+        StarterKit.configure({
+          link: false,
+          trailingNode: false,
+          listKeymap: false,
+        }),
         ClipboardHook,
       ],
     })

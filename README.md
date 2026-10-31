@@ -21,15 +21,19 @@ https://center.steam.design/
 
 ## Install
 
+Requires Node.js 22.12+ and pnpm (`corepack enable` picks the version from `package.json`).
+
 `git clone https://github.com/sapic/steam-text-center.git`
 
-`yarn`
+`pnpm install`
 
 #### Development
 
-`yarn serve`
+`pnpm dev`
 
-open browser: `localhost:8080`
+open browser: `localhost:5173`
+
+`pnpm build` writes the static site to `dist/`, `pnpm serve` previews it, `pnpm lint` runs ESLint.
 
 ## TO-DO:
 - [x] Prepare polish locales

@@ -1,11 +1,11 @@
 import { Extension } from '@tiptap/core'
-import { DOMParser } from 'prosemirror-model'
-import { Plugin, PluginKey } from 'prosemirror-state'
+import { DOMParser } from '@tiptap/pm/model'
+import { Plugin, PluginKey } from '@tiptap/pm/state'
 
 const ClipboardHook = Extension.create({
   name: 'clipboard-hook',
 
-  addProseMirrorPlugins() {
+  addProseMirrorPlugins () {
     return [
       new Plugin({
         key: new PluginKey('clipboard-hook'),
@@ -76,18 +76,17 @@ const ClipboardHook = Extension.create({
               .replace(/\[hr\]/g, '<hr>')
               .replace(/\[\/hr\]/g, '</hr>')
 
-              
             const parser = (content) => {
               const domNode = document.createElement('div')
               domNode.innerHTML = content
               return DOMParser.fromSchema(editor.schema).parse(domNode)
             }
             return parser(text)
-          }
+          },
         },
       }),
     ]
-  }
+  },
 })
 
 export default ClipboardHook
