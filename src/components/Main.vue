@@ -5,12 +5,15 @@
   >
     <MainHeader />
     <EditorContainer
-      @updateEditor="updateEditor"
       :width="width"
+      @update-editor="updateEditor"
     />
 
     <div class="flex-inline">
-      <ShowcaseSelect v-model="width" @updateWidth="updateWidth" />
+      <ShowcaseSelect
+        v-model="width"
+        @update-width="updateWidth"
+      />
       <a
         class="btn_profile_action btn_medium"
         href="#"
@@ -64,13 +67,13 @@ export default {
       this.editor.chain().setContent('').run()
     },
 
-    updateEditor(editor) {
+    updateEditor (editor) {
       this.editor = editor
     },
 
     updateWidth (px) {
       this.width = px
-    } 
+    },
   },
 }
 </script>

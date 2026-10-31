@@ -23,6 +23,8 @@
 
 <script>
 export default {
+  emits: ['updateWidth'],
+
   methods: {
     changeMode (e) {
       this.$emit('updateWidth', parseInt(e.target.value))
